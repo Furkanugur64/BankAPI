@@ -1,0 +1,178 @@
+﻿@model EntityLayer.Concrete.User
+@{
+    ViewData["Title"] = "MyAccount";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="col-lg-9">
+    <h3 class="text-5 font-weight-700 d-flex admin-heading">Personal Profile</h3>
+
+    <!-- Personal Details  -->
+    <div class="bg-light shadow-sm rounded infoItems">
+
+        <a href="#edit-personal-details" class="float-right text-1 text-uppercase text-muted btn-link pbtn" data-id="edit-personal-details"><i class="fas fa-edit mr-1"></i>Güncelle</a>
+        <div class="row">
+            <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Adı</p>
+            <p class="col-sm-9">@Model.FirstName @Model.LastName</p>
+        </div>
+        <div class="row">
+            <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Doğum Yılı</p>
+            <p class="col-sm-9">1993</p>
+        </div>
+        <div class="row">
+            <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Adres</p>
+            <p class="col-sm-9">
+                @Model.Address
+            </p>
+        </div>
+
+        <div id="edit-personal-details" class="accord">
+            <div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title font-weight-400">Personal Details</h5>
+                        <button type="button" class="close font-weight-400" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <form id="personaldetails" action="@Url.Action("NameAction", "User")" method="post">
+                            <div class="row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label for="firstName">Adınız</label>
+                                        <input type="text" value="@Model.FirstName" class="form-control" name="firstName" id="firstName" required="" placeholder="Adınızı Girin">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label for="firstName">Soyadınız</label>
+                                        <input type="text" value="@Model.LastName" class="form-control" name="LastName" id="LastName" required="" placeholder="Adınızı Girin">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="birthDate">Adres</label>
+                                        <div class="position-relative">
+                                            <input id="birthDate" value="@Model.Address" type="text" class="form-control" name="Address" required="" placeholder="Doğum Yılı">
+                                            <span class="icon-inside"><i class="fas fa-calendar-alt"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-block mt-2" type="submit">
+                                Güncelle
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Edit Details Modal  -->
+    <!-- Personal Details End -->
+    <!-- Email Addresses  -->
+    <div class="bg-light shadow-sm rounded infoItems">
+        <a href="#edit-email" class="float-right text-1 text-uppercase text-muted btn-link pbtn" data-id="edit-email"><i class="fas fa-edit mr-1"></i>Güncelle</a>
+        <div class="row">
+            <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Mail Adresi</p>
+            <p class="col-sm-9">@Model.Email</p>
+        </div>
+        <div id="edit-email" class="accord">
+            <div class="">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title font-weight-400">Mail Adresi</h5>
+                        <button type="button" class="close font-weight-400" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <form id="email" action="@Url.Action("EmailAction", "User")" method="post">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="emailID">Mail Adresi</label>
+                                        <input type="text" value="@Model.Email" class="form-control" name="Email" id="Email" required="" placeholder="Mail adresi">
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-block" type="submit">Güncelle</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Email Addresses End -->
+    <!-- Phone -->
+    <div class="bg-light shadow-sm rounded infoItems">
+        <a href="#edit-phone" class="float-right text-1 text-uppercase text-muted btn-link pbtn" data-id="edit-phone"><i class="fas fa-edit mr-1"></i>Güncelle</a>
+        <div class="row">
+            <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Telefon Numarası</p>
+            <p class="col-sm-9">+@Model.PhoneNumber</p>
+        </div>
+        <div id="edit-phone" class="accord">
+            <div class="">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title font-weight-400">Phone</h5>
+                        <button type="button" class="close font-weight-400" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <form id="phone" action="@Url.Action("PhoneNumberAction", "User")" method="post">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="mobileNumber">Telefon Numarası</label>
+                                        <input type="text" value="@Model.PhoneNumber" class="form-control" name="Phone" id="mobileNumber" required="" placeholder="Telefon Numarası">
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-block" type="submit">Güncelle</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Phone End -->
+    <!-- Security -->
+    <div class="bg-light shadow-sm rounded infoItems">
+        <a href="#change-password" class="float-right text-1 text-uppercase text-muted btn-link pbtn" data-id="change-password"><i class="fas fa-edit mr-1"></i>Güncelle</a>
+        <div class="row">
+            <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">
+                <label class="col-form-label">Şifre</label>
+            </p>
+            <p class="col-sm-9">
+                <input type="password" class="form-control-plaintext" data-bv-field="password" id="password" value="Şifrenizi Girin">
+            </p>
+        </div>
+        <div id="change-password" class="accord">
+            <div class="">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title font-weight-400">Şifre Değiştir</h5>
+                        <button type="button" class="close font-weight-400" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form id="changePassword" action="@Url.Action("PasswordChangeAction", "User")" method="post">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="oldPassword" id="existingPassword" required="" placeholder="Mevcut Şifrenizi Girin">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="newPassword" id="newPassword" required="" placeholder="Enter Yeni Şifrenizi Girin">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="confirmPassword" id="confirmPassword" required="" placeholder="Yeni Şifrenizi Tekrar Girin">
+                            </div>
+                            <button class="btn btn-primary btn-block mt-4" type="submit">
+                                Güncelle
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Security End -->
+</div>
+
